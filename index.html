@@ -1487,7 +1487,7 @@ ly
 <body>
     <!-- Galaxy Canvas for Background -->
     <div class="galaxy-container">
-        <canvas id="galaxy-canvas" class="galaxy-canvas"></canvas>
+        <!-- Galaxy canvas removed - using Three.js galaxy in main scene -->
     </div>
     
     <!-- Progress Bar -->
@@ -2555,7 +2555,7 @@ ly
             
             galaxyCenter.add(blackHole);
             galaxyCenter.add(accretionDisk);
-            galaxyCenter.position.set(0, 0, -20);
+            galaxyCenter.position.set(0, 0, -50);
             
             galaxyCenter.userData = {
                 rotationSpeed: 0.02,
@@ -2564,6 +2564,10 @@ ly
             };
             
             galaxy.add(galaxyCenter);
+            
+            // Position galaxy as background
+            galaxy.position.set(0, 0, -30);
+            galaxy.scale.set(2, 2, 2);
             scene.add(galaxy);
             
             // Nebula clouds
@@ -4633,7 +4637,7 @@ ly
     </script>
     
     <!-- Galaxy Background Script -->
-    <script type="module" src="Galaxy.js"></script>
+    <!-- Galaxy.js removed - using Three.js galaxy implementation instead -->
     
     <!-- Electric Border Script -->
     <script src="ElectricBorderVanilla.js"></script>
