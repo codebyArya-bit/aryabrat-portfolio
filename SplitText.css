@@ -1,0 +1,161 @@
+.split-parent {
+    overflow: hidden;
+    display: inline-block;
+    white-space: normal;
+    word-wrap: break-word;
+}
+
+.split-line {
+    display: block;
+    overflow: hidden;
+}
+
+.split-char,
+.split-word {
+    display: inline-block;
+    will-change: transform, opacity;
+    color: #ffffff;
+    font-weight: 700;
+    text-shadow: 
+        0 0 5px rgba(0, 191, 255, 0.6),
+        0 0 10px rgba(0, 191, 255, 0.4);
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.split-char:hover,
+.split-word:hover {
+    color: #00BFFF;
+    text-shadow: 
+        0 0 8px rgba(0, 191, 255, 1),
+        0 0 16px rgba(0, 191, 255, 0.8),
+        0 0 24px rgba(0, 191, 255, 0.6),
+        0 0 32px rgba(0, 191, 255, 0.4);
+    transform: scale(1.05);
+}
+
+.split-char {
+    transform-origin: center bottom;
+}
+
+.split-word {
+    transform-origin: left center;
+    white-space: nowrap;
+}
+
+/* Animation states */
+.split-text-hidden {
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+.split-text-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Dynamic glow animation */
+@keyframes splitTextGlow {
+    0%, 100% {
+        text-shadow: 
+            0 0 5px rgba(0, 191, 255, 0.8),
+            0 0 10px rgba(0, 191, 255, 0.6),
+            0 0 15px rgba(0, 191, 255, 0.4),
+            0 0 20px rgba(0, 191, 255, 0.2);
+    }
+    50% {
+        text-shadow: 
+            0 0 10px rgba(0, 255, 191, 0.9),
+            0 0 20px rgba(0, 255, 191, 0.7),
+            0 0 30px rgba(0, 255, 191, 0.5),
+            0 0 40px rgba(0, 255, 191, 0.3);
+    }
+}
+
+/* Gradient text animation */
+@keyframes splitTextGradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Enhanced split text with performance-optimized gradient background */
+.split-char.enhanced,
+.split-word.enhanced {
+    background: linear-gradient(
+        45deg,
+        #00BFFF,
+        #00FFFF,
+        #00BFFF
+    );
+    background-size: 150% 150%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: 
+        splitTextGradient 6s ease-in-out infinite;
+    /* Performance optimizations */
+    will-change: background-position;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* Performance optimizations */
+.split-parent * {
+    backface-visibility: hidden;
+    perspective: 1000px;
+    transform: translateZ(0);
+}
+
+/* Optimize animations for better performance */
+.split-char,
+.split-word {
+    will-change: transform, opacity;
+}
+
+/* Remove will-change after animation completes */
+.split-text-visible .split-char,
+.split-text-visible .split-word {
+    will-change: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .split-char {
+        transform-origin: center center;
+    }
+    
+    .split-word {
+        transform-origin: center center;
+    }
+}
+
+/* Accessibility and performance - respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    .split-char,
+    .split-word,
+    .split-line {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+        will-change: auto !important;
+    }
+    
+    .split-text-hidden {
+        opacity: 1;
+        transform: none;
+    }
+    
+    .split-char.enhanced,
+    .split-word.enhanced {
+        background: #00BFFF;
+        -webkit-text-fill-color: #00BFFF;
+        color: #00BFFF;
+    }
+}

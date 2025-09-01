@@ -1,0 +1,66 @@
+.galaxy-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.galaxy-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  opacity: 1;
+}
+
+/* Ensure the galaxy background doesn't interfere with content */
+.galaxy-overlay {
+  position: relative;
+  z-index: 1;
+}
+
+/* Optional: Add a subtle overlay to improve text readability */
+.content-overlay {
+  position: relative;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(0.5px);
+}
+
+/* Animation for galaxy loading */
+@keyframes galaxyFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.galaxy-container.loaded {
+  animation: galaxyFadeIn 2s ease-in-out;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .galaxy-container {
+    /* Reduce complexity on mobile for performance */
+    filter: blur(0.5px);
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .galaxy-container {
+    opacity: 0.3;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .galaxy-container {
+    animation: none;
+  }
+}

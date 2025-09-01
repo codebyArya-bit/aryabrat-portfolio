@@ -1,0 +1,14 @@
+{
+  "name": "react-bits-local",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.17.3",
+    "ogl": "^1.0.11",
+    "zod": "^4.0.17"
+  },
+  "scripts": {
+    "start": "node react-bits-local.mjs"
+  }
+}
