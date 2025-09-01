@@ -18,6 +18,10 @@
     <link rel="stylesheet" href="ElectricBorder.css">
     <link rel="stylesheet" href="ShinyText.css">
     <link rel="stylesheet" href="SplitText.css">
+    
+    <!-- ES Module Shims polyfill for import maps compatibility -->
+    <script async src="https://ga.jspm.io/npm:es-module-shims@1.8.0/dist/es-module-shims.js"></script>
+    
     <script type="importmap">
     {
         "imports": {
@@ -1487,7 +1491,7 @@ ly
 <body>
     <!-- Galaxy Canvas for Background -->
     <div class="galaxy-container">
-        <!-- Galaxy canvas removed - using Three.js galaxy in main scene -->
+        <canvas id="galaxy-canvas" class="galaxy-canvas"></canvas>
     </div>
     
     <!-- Progress Bar -->
@@ -2555,7 +2559,7 @@ ly
             
             galaxyCenter.add(blackHole);
             galaxyCenter.add(accretionDisk);
-            galaxyCenter.position.set(0, 0, -50);
+            galaxyCenter.position.set(0, 0, -20);
             
             galaxyCenter.userData = {
                 rotationSpeed: 0.02,
@@ -2564,10 +2568,6 @@ ly
             };
             
             galaxy.add(galaxyCenter);
-            
-            // Position galaxy as background
-            galaxy.position.set(0, 0, -30);
-            galaxy.scale.set(2, 2, 2);
             scene.add(galaxy);
             
             // Nebula clouds
@@ -4637,7 +4637,7 @@ ly
     </script>
     
     <!-- Galaxy Background Script -->
-    <!-- Galaxy.js removed - using Three.js galaxy implementation instead -->
+    <script type="module" src="Galaxy.js"></script>
     
     <!-- Electric Border Script -->
     <script src="ElectricBorderVanilla.js"></script>
